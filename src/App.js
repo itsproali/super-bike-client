@@ -9,6 +9,7 @@ import Blog from "./components/Blog/Blog";
 import Login from "./components/Login-Register/Login";
 import Register from "./components/Login-Register/Register";
 import Spinner from "./components/Spinner/Spinner";
+import  { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
       </Routes>
       <Footer></Footer>
+      <Toaster/>
     </div>
   );
 }

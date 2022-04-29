@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase-init";
 import { signOut } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -107,6 +108,7 @@ const Header = () => {
                     to="/"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                     onClick={() => {
+                      toast.success("Successfully logged out");
                       setOpen(!open);
                       signOut(auth);
                     }}

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 import Spinner from "../Spinner/Spinner";
 import "./Login_Register.css";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -22,9 +23,20 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+        toast.success("Verification Email sent")
+        navigate("/");
     }
   }, [navigate, user]);
+
+  useEffect(() => {
+    if (error) {
+      if (error.message.includes("already")) {
+        toast.error("You Already have an account with this email address");
+      } else {
+        toast.error(`${error.message}`);
+      }
+    }
+  }, [error]);
 
   if (loading) {
     return <Spinner></Spinner>;

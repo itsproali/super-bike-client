@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 import Spinner from "../Spinner/Spinner";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,9 +20,30 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
+      toast.success("Successfully Logged In");
       navigate("/");
     }
   }, [navigate, user]);
+
+  useEffect(() => {
+    if (resetError) {
+      if (resetError.message.includes("invalid")) {
+        toast.error("Please enter a valid Email");
+      } else if (resetError.message.includes("not-found")) {
+        toast.error("User not found");
+      } else {
+        toast.error(`${resetError.message}`);
+      }
+    } else if (error) {
+      if (error.message.includes("wrong")) {
+        toast.error("You entered a wrong password !!");
+      } else {
+        toast.error("Something went Wrong");
+      }
+    } else if (!resetError) {
+      toast.success("Password reset email sent");
+    }
+  }, [error, resetError]);
 
   if (loading || sending) {
     return <Spinner></Spinner>;
@@ -29,11 +54,11 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-    const resetPassword = () => {
-        if (email) {
-            sendPasswordResetEmail(email)
-        }
+  const resetPassword = () => {
+    if (email) {
+      sendPasswordResetEmail(email);
     }
+  };
 
   return (
     <div className="form-container">
@@ -44,7 +69,7 @@ const Login = () => {
             name="email"
             id="floating_standard"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => setEmail(e.target.value)}
             placeholder=" "
             required
           />
@@ -62,7 +87,7 @@ const Login = () => {
             name="password"
             id="floating_standard"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            onChange={(e) => setPassword(e.target.value)}
+            onBlur={(e) => setPassword(e.target.value)}
             placeholder=" "
             required
           />
@@ -74,7 +99,10 @@ const Login = () => {
           </label>
         </div>
         <div className="text-right  my-4">
-          <button onClick={resetPassword} className="text-blue-600 hover:underline">
+          <button
+            onClick={resetPassword}
+            className="text-blue-600 hover:underline"
+          >
             Forgotten Password?
           </button>
         </div>
