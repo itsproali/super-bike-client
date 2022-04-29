@@ -1,0 +1,29 @@
+.nav-link {
+    display: block;
+    color: white;
+    transition: .4s;
+    border: none;
+}
+
+.nav-link:hover {
+    color: var(--red);
+}
+
+.active {
+    color: var(--red);
+}
+
+@media only screen and (max-width: 768px) {
+    .links {
+        background-color: var(--gray);
+    }
+
+    .nav-link {
+        border-bottom: 1px solid white;
+    }
+
+    .nav-link:hover {
+        color: white;
+        background-color: var(--red);
+    }
+}
