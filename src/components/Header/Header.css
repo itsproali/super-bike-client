@@ -1,3 +1,10 @@
+/* nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 999;
+} */
+
 .nav-link {
     display: block;
     color: hsl(0, 0%, 65%);

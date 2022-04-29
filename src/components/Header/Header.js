@@ -5,13 +5,12 @@ import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <div>
       <nav
         className={`${
           location.pathname === "/" ? "bg-transparent" : "bg-white shadow-lg"
-        } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none`}
+        } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-50`}
       >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
@@ -132,26 +131,26 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/sfsd" className="nav-link py-2 pr-4 pl-3 md:p-0">
+                <NavLink to="/about" className="nav-link py-2 pr-4 pl-3 md:p-0">
                   About
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/sfdgsdsd"
+                  to="/inventory"
                   className="nav-link py-2 pr-4 pl-3 md:p-0"
                 >
-                  Services
+                  Inventory
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/sfdsd" className="nav-link py-2 pr-4 pl-3 md:p-0">
-                  Pricing
+                <NavLink to="/blog" className="nav-link py-2 pr-4 pl-3 md:p-0">
+                  Blog
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/sdflkj"
+                  to="/contact"
                   className="nav-link py-2 pr-4 pl-3 md:p-0"
                 >
                   Contact
