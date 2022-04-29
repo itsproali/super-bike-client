@@ -1,9 +1,13 @@
-/* nav {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 999;
-} */
+.gray-btn {
+    color: white;
+    background-color: var(--gray);
+    border-radius: 5px;
+    transition: .4s;
+}
+
+.gray-btn:hover {
+    background-color: var(--red);
+}
 
 .nav-link {
     display: block;

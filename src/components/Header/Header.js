@@ -1,10 +1,15 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { CgProfile } from "react-icons/cg";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase-init";
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
   return (
     <div>
       <nav
@@ -19,21 +24,41 @@ const Header = () => {
             </span>
           </Link>
           <div className="flex items-center md:order-2">
-            <button
-              type="button"
-              className="flex mr-3 text-sm bg-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
-              id="user-menu-button"
-              aria-expanded="false"
-              data-dropdown-toggle="dropdown"
-            >
-              <span className="sr-only">Open user menu</span>
-              <CgProfile className="w-8 h-8"></CgProfile>
-              {/* <img
-                className="w-8 h-8 rounded-full text-white"
-                src="/docs/images/people/profile-picture-3.jpg"
-                alt="User"
-              /> */}
-            </button>
+            {user ? (
+              <button
+                type="button"
+                className="flex mr-3 text-sm bg-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
+                id="user-menu-button"
+                aria-expanded="false"
+                data-dropdown-toggle="dropdown"
+              >
+                <span className="sr-only">Open user menu</span>
+                {user.photoURL ? (
+                  <img
+                    className="w-8 h-8 rounded-full text-white"
+                    src={user.photoURL}
+                    alt="User"
+                  />
+                ) : (
+                  <CgProfile className="w-8 h-8"></CgProfile>
+                )}
+              </button>
+            ) : (
+              <div>
+                <button
+                  className="gray-btn py-2 px-4"
+                  onClick={() => navigate("/login")}
+                >
+                  Log In
+                </button>
+                <button
+                  className="red-btn py-2 px-4 ml-2"
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </button>
+              </div>
+            )}
 
             <div
               className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
@@ -49,9 +74,11 @@ const Header = () => {
               data-popper-placement="top"
             >
               <div className="py-3 px-4">
-                <span className="block text-sm text-gray-900">John Doe</span>
+                <span className="block text-sm text-gray-900">
+                  {user?.displayName}
+                </span>
                 <span className="block text-sm font-medium text-gray-500 truncate">
-                  user@superbike.com
+                  {user?.email}
                 </span>
               </div>
               <ul className="py-1" aria-labelledby="dropdown">

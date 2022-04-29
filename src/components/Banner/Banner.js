@@ -10,7 +10,7 @@ const Banner = () => {
         <h1 className="banner-title">Popular Bike</h1>
         <h1 className="banner-title mb-6">Dealership</h1>
         <Link to="/">
-          <button className="red-btn">DISCOVER MORE</button>
+          <button className="red-btn py-4 px-6">DISCOVER MORE</button>
         </Link>
       </div>
     </div>

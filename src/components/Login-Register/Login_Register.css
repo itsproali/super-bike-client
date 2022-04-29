@@ -1,0 +1,13 @@
+.form-container {
+    width: 500px;
+    margin: 50px auto;
+    box-shadow: 2px 2px 5px 4px gray;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 520px) {
+    .form-container {
+        width: 95%;
+    }
+}
