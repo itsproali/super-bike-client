@@ -1,20 +1,39 @@
-import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
+import Spinner from "../Spinner/Spinner";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, loading, error] =
+  const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
+
+  if (loading || sending) {
+    return <Spinner></Spinner>;
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
-    navigate("/");
   };
+
+    const resetPassword = () => {
+        if (email) {
+            sendPasswordResetEmail(email)
+        }
+    }
 
   return (
     <div className="form-container">
@@ -37,7 +56,7 @@ const Login = () => {
           </label>
         </div>
 
-        <div className="relative z-0 my-10">
+        <div className="relative z-0 mt-10">
           <input
             type="password"
             name="password"
@@ -54,10 +73,15 @@ const Login = () => {
             Password
           </label>
         </div>
+        <div className="text-right  my-4">
+          <button onClick={resetPassword} className="text-blue-600 hover:underline">
+            Forgotten Password?
+          </button>
+        </div>
 
         <input
           type="submit"
-          className="cursor-pointer w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 duration-300"
+          className="cursor-pointer w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center duration-300"
           value="Login"
         />
       </form>
