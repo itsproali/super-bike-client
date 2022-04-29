@@ -1,11 +1,18 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import "./Header.css"
+import { Link, NavLink, useLocation } from "react-router-dom";
+import "./Header.css";
+import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <div>
-      <nav className="bg-transparent border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none">
+      <nav
+        className={`${
+          location.pathname === "/" ? "bg-transparent" : "bg-white shadow-lg"
+        } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none`}
+      >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
             <span className="text-red-600 self-center text-2xl font-semibold whitespace-nowrap">
@@ -15,17 +22,18 @@ const Header = () => {
           <div className="flex items-center md:order-2">
             <button
               type="button"
-              className="flex mr-3 text-sm bg-red-600 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
+              className="flex mr-3 text-sm bg-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
               id="user-menu-button"
               aria-expanded="false"
               data-dropdown-toggle="dropdown"
             >
               <span className="sr-only">Open user menu</span>
-              <img
+              <CgProfile className="w-8 h-8"></CgProfile>
+              {/* <img
                 className="w-8 h-8 rounded-full text-white"
                 src="/docs/images/people/profile-picture-3.jpg"
                 alt="User"
-              />
+              /> */}
             </button>
 
             <div
@@ -42,9 +50,7 @@ const Header = () => {
               data-popper-placement="top"
             >
               <div className="py-3 px-4">
-                <span className="block text-sm text-gray-900">
-                  John Doe
-                </span>
+                <span className="block text-sm text-gray-900">John Doe</span>
                 <span className="block text-sm font-medium text-gray-500 truncate">
                   user@superbike.com
                 </span>
@@ -66,7 +72,7 @@ const Header = () => {
                     Settings
                   </Link>
                 </li>
-               
+
                 <li>
                   <Link
                     to="/"
@@ -120,16 +126,13 @@ const Header = () => {
                 <NavLink
                   to="/"
                   className="nav-link py-2 pr-4 pl-3 md:p-0"
-                //   ariaCurrent="page"
+                  //   ariaCurrent="page"
                 >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/sfsd"
-                  className="nav-link py-2 pr-4 pl-3 md:p-0"
-                >
+                <NavLink to="/sfsd" className="nav-link py-2 pr-4 pl-3 md:p-0">
                   About
                 </NavLink>
               </li>
@@ -142,10 +145,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/sfdsd"
-                  className="nav-link py-2 pr-4 pl-3 md:p-0"
-                >
+                <NavLink to="/sfdsd" className="nav-link py-2 pr-4 pl-3 md:p-0">
                   Pricing
                 </NavLink>
               </li>

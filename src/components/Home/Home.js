@@ -4,7 +4,8 @@ import Banner from '../Banner/Banner';
 const Home = () => {
     return (
         <div>
-            <Banner/>
+            <Banner />
+            <h1 className="mt-[100vh]">Hello World</h1>
         </div>
     );
 };
