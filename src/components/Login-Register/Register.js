@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
@@ -39,7 +38,7 @@ const Register = () => {
             type="text"
             id="name"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            onBlur={(e) => setDisplayName(e.target.value)}
+            onChange={(e) => setDisplayName(e.target.value)}
             required
           />
         </div>
@@ -54,7 +53,7 @@ const Register = () => {
             type="email"
             id="email"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            onBlur={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -69,7 +68,7 @@ const Register = () => {
             type="password"
             id="password"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            onBlur={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
@@ -86,7 +85,7 @@ const Register = () => {
             id="name"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             placeholder="https://www.photo.png"
-            onBlur={(e) => setPhotoURL(e.target.value)}
+            onChange={(e) => setPhotoURL(e.target.value)}
           />
         </div>
 

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const handleLogin = (e) => {
     e.preventDefault();
+    signInWithEmailAndPassword(email, password);
+    navigate("/");
   };
 
   return (
@@ -19,6 +25,7 @@ const Login = () => {
             name="email"
             id="floating_standard"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            onChange={(e) => setEmail(e.target.value)}
             placeholder=" "
             required
           />
@@ -36,6 +43,7 @@ const Login = () => {
             name="password"
             id="floating_standard"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            onChange={(e) => setPassword(e.target.value)}
             placeholder=" "
             required
           />

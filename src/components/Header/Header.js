@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { CgProfile } from "react-icons/cg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase-init";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -15,7 +17,7 @@ const Header = () => {
       <nav
         className={`${
           location.pathname === "/" ? "bg-transparent" : "bg-white shadow-lg"
-        } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-50`}
+        } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-40`}
       >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
@@ -27,10 +29,8 @@ const Header = () => {
             {user ? (
               <button
                 type="button"
-                className="flex mr-3 text-sm bg-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="dropdown"
+                onClick={() => setOpen(!open)}
+                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">Open user menu</span>
                 {user.photoURL ? (
@@ -61,17 +61,9 @@ const Header = () => {
             )}
 
             <div
-              className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
-              id="dropdown"
-              style={{
-                position: "absolute",
-                inset: "auto auto 0px 0px",
-                margin: "0px",
-                transform: "translate(956px, 1087px)",
-              }}
-              data-popper-reference-hidden=""
-              data-popper-escaped=""
-              data-popper-placement="top"
+              className={`${
+                open ? "block" : "hidden"
+              } absolute top-8 right-14 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg`}
             >
               <div className="py-3 px-4">
                 <span className="block text-sm text-gray-900">
@@ -84,18 +76,29 @@ const Header = () => {
               <ul className="py-1" aria-labelledby="dropdown">
                 <li>
                   <Link
-                    to="/"
+                    to="/inventory"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
+                    onClick={() => setOpen(!open)}
                   >
-                    Dashboard
+                    Manage Items
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
+                    onClick={() => setOpen(!open)}
                   >
-                    Settings
+                    My Items
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/"
+                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
+                    onClick={() => setOpen(!open)}
+                  >
+                    Add Item
                   </Link>
                 </li>
 
@@ -103,8 +106,12 @@ const Header = () => {
                   <Link
                     to="/"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
+                    onClick={() => {
+                      setOpen(!open);
+                      signOut(auth);
+                    }}
                   >
-                    Sign out
+                    Log out
                   </Link>
                 </li>
               </ul>
