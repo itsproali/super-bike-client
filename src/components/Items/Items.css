@@ -1,0 +1,44 @@
+.price-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.price-container:hover .arrow {
+    display: block;
+    transition: .3s;
+}
+
+.price-container:hover .price {
+    margin-left: 10px;
+    transform: translate(20px);
+    transition: .4s;
+}
+
+.arrow {
+    display: none;
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: var(--red);
+    transition: .3s;
+    animation-name: arrow;
+    animation-duration: .4s;
+}
+
+@keyframes arrow {
+    0% {
+        top: 10px;
+        left: -100px;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+.translate-hover:hover {
+    transform: translate(0, -5px);
+    transition: .4s;
+    transition-timing-function: ease-in;
+}

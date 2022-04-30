@@ -1,13 +1,14 @@
-import React from 'react';
-import Banner from '../Banner/Banner';
+import React from "react";
+import Banner from "../Banner/Banner";
+import Items from "../Items/Items";
 
 const Home = () => {
-    return (
-        <div>
-            <Banner />
-            <h1 className="mt-[100vh]">Hello World</h1>
-        </div>
-    );
+  return (
+    <div>
+      <Banner />
+      <Items className="h-[100vh]"></Items>
+    </div>
+  );
 };
 
 export default Home;

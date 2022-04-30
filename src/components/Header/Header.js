@@ -47,16 +47,10 @@ const Header = () => {
             ) : (
               <div>
                 <button
-                  className="gray-btn py-2 px-4"
+                  className="red-btn py-2 px-4"
                   onClick={() => navigate("/login")}
                 >
-                  Log In
-                </button>
-                <button
-                  className="red-btn py-2 px-4 ml-2"
-                  onClick={() => navigate("/register")}
-                >
-                  Register
+                  Login
                 </button>
               </div>
             )}
@@ -121,7 +115,7 @@ const Header = () => {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg md:hidden hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
+              className="inline-flex items-center p-2 ml-1 text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >
