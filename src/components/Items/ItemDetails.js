@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { GiStorkDelivery } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
 import toast from "react-hot-toast";
 
 const ItemDetails = () => {
@@ -10,8 +11,9 @@ const ItemDetails = () => {
   const [item, setItem] = useState({});
   const [quantity, setQuantity] = useState(0);
   const [sold, setSold] = useState(0);
-  const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
 
+  // Load Item Details
   useEffect(() => {
     axios
       .get(`http://localhost:5000/item/${id}`)
@@ -23,6 +25,24 @@ const ItemDetails = () => {
       .catch((error) => console.error(error.message));
   }, [id, item]);
 
+  // Handle Stock
+  const handleStockForm = (e) => {
+    e.preventDefault();
+    let stock = parseInt(e.target.stock.value);
+    console.log(stock);
+    if (stock < 999 && stock > 0) {
+      axios
+        .put(`http://localhost:5000/stockItem/${id}`, { quantity, stock })
+        .then((res) => {});
+      setModal(false);
+      toast.success("Stock Updated");
+    } else {
+      toast.error("Remember You aren't a Robot");
+    }
+    e.target.stock.value = "";
+  };
+
+  // Handle Delivery
   const handleDeliver = async () => {
     if (quantity > 0) {
       axios
@@ -105,7 +125,7 @@ const ItemDetails = () => {
         <div className="flex items-center justify-end my-8">
           <button
             className="gray-btn mb-4 py-2 px-6 mx-4 flex items-center"
-            onClick={() => navigate(`/inventory/${item._id}`)}
+            onClick={() => setModal(true)}
           >
             <FaEdit></FaEdit>
             <p className="ml-2">ReStock</p>
@@ -117,6 +137,33 @@ const ItemDetails = () => {
             <GiStorkDelivery></GiStorkDelivery>
             <p className="ml-2">Delivered</p>
           </button>
+
+          {/* My Own modal */}
+          <div
+            className={`${
+              modal ? "block modal shadow-2xl" : "hidden"
+            } duration-400`}
+          >
+            <form className="stock-form" onSubmit={handleStockForm}>
+              <ImCross
+                className="text-red-600 cursor-pointer ml-auto"
+                onClick={() => setModal(false)}
+              ></ImCross>
+              <input
+                className="stock-input"
+                type="number"
+                name="stock"
+                id="stock"
+                placeholder="Enter Restock quantity"
+                required
+              />
+              <input
+                className="red-btn py-3 w-full cursor-pointer"
+                type="submit"
+                value="Restock"
+              />
+            </form>
+          </div>
         </div>
       </div>
     </div>

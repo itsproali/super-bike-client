@@ -60,10 +60,36 @@
     text-align: justify;
 }
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    padding: 15px;
+    background-color: white;
+    width: 400px;
+    height: 330px;
+    border-radius: 7px;
+}
+
+
+.stock-input {
+    display: block;
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    border: none;
+    border: 2px solid lightcoral;
+    border-radius: 10px;
+    margin: 95px 0;
+}
+
 @media only screen and (max-width: 700px) {
     .table {
         width: 95%;
     }
+
     .data-name {
         width: 30%;
     }
