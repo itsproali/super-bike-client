@@ -11,6 +11,7 @@ import Spinner from "./components/Spinner/Spinner";
 import { Toaster } from "react-hot-toast";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ItemDetails from "./components/Items/ItemDetails";
+import ManageInventory from "./components/Inventory/ManageInventory";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/inventory" element={<ManageInventory/>}></Route>
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
