@@ -71,7 +71,7 @@ const Header = () => {
               <ul className="py-1" aria-labelledby="dropdown">
                 <li>
                   <Link
-                    to="/inventory"
+                    to="/inventories"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                     onClick={() => setOpen(!open)}
                   >
@@ -167,10 +167,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/inventory"
+                  to="/inventories"
                   className="nav-link py-2 pr-4 pl-3 md:p-0"
                 >
-                  Inventory
+                  Inventories
                 </NavLink>
               </li>
               <li>

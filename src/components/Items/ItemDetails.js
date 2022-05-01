@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
-import { GiStorkDelivery } from "react-icons/gi";
+import { MdSystemUpdateAlt, MdOutlineDeliveryDining } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 import toast from "react-hot-toast";
 
@@ -16,7 +15,7 @@ const ItemDetails = () => {
   // Load Item Details
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/item/${id}`)
+      .get(`https://super-bike-warehouse.herokuapp.com/item/${id}`)
       .then((res) => {
         setItem(res.data);
         setQuantity(res.data.quantity);
@@ -32,7 +31,10 @@ const ItemDetails = () => {
     console.log(stock);
     if (stock < 999 && stock > 0) {
       axios
-        .put(`http://localhost:5000/stockItem/${id}`, { quantity, stock })
+        .put(`https://super-bike-warehouse.herokuapp.com/stockItem/${id}`, {
+          quantity,
+          stock,
+        })
         .then((res) => {});
       setModal(false);
       toast.success("Stock Updated");
@@ -46,7 +48,10 @@ const ItemDetails = () => {
   const handleDeliver = async () => {
     if (quantity > 0) {
       axios
-        .put(`http://localhost:5000/item/${id}`, { quantity, sold })
+        .put(`https://super-bike-warehouse.herokuapp.com/item/${id}`, {
+          quantity,
+          sold,
+        })
         .then((res) => {
           setQuantity(quantity - 1);
           setSold(quantity + 1);
@@ -60,7 +65,9 @@ const ItemDetails = () => {
   return (
     <div className="mx-2 md:mx-16 lg:mx-32">
       <div>
-        <h1 className="text-center text-3xl text-red-600 my-6">{item.title}</h1>
+        <h1 className="text-center text-3xl text-red-600 my-6 font-semibold">
+          {item.title}
+        </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 p-4">
           <div className="w-full md:w-[500px] lg:w-full mx-auto">
             <img
@@ -127,14 +134,14 @@ const ItemDetails = () => {
             className="gray-btn mb-4 py-2 px-6 mx-4 flex items-center"
             onClick={() => setModal(true)}
           >
-            <FaEdit></FaEdit>
+            <MdSystemUpdateAlt></MdSystemUpdateAlt>
             <p className="ml-2">ReStock</p>
           </button>
           <button
             className="red-btn mb-4 py-2 px-6 flex items-center"
             onClick={handleDeliver}
           >
-            <GiStorkDelivery></GiStorkDelivery>
+            <MdOutlineDeliveryDining></MdOutlineDeliveryDining>
             <p className="ml-2">Delivered</p>
           </button>
 

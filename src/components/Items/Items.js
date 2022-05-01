@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Items.css";
-import { BsArrowRight } from "react-icons/bs"
+import { BsArrowRight } from "react-icons/bs";
 import { BiDetail } from "react-icons/bi";
 import "aos";
 import Aos from "aos";
@@ -13,9 +13,11 @@ const Inventory = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/items/6").then((res) => {
-      setItems(res.data);
-    });
+    axios
+      .get("https://super-bike-warehouse.herokuapp.com/items/6")
+      .then((res) => {
+        setItems(res.data);
+      });
   }, []);
 
   return (
@@ -58,8 +60,8 @@ const Inventory = () => {
                     className="red-btn mb-4 py-2 px-6 flex items-center"
                     onClick={() => navigate(`/inventory/${item._id}`)}
                   >
-                 <BiDetail></BiDetail>
-                 <p className="ml-2">See Details</p>
+                    <BiDetail></BiDetail>
+                    <p className="ml-2">See Details</p>
                   </button>
                 </div>
                 <div className="flex justify-between font-semibold">

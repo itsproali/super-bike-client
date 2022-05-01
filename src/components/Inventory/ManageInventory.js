@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const ManageInventory = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios("http://localhost:5000/items").then((res) => {
+    axios.get("https://super-bike-warehouse.herokuapp.com/items").then((res) => {
       setItems(res.data);
     });
   }, []);
