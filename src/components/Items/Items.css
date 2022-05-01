@@ -42,3 +42,29 @@
     transition: .4s;
     transition-timing-function: ease-in;
 }
+
+.table {
+    width: 75%;
+    border-collapse: collapse;
+    margin: 10px auto;
+}
+
+.data-name {
+    font-weight: 500;
+    width: 200px;
+}
+
+.table td {
+    border: 2px solid darkgray;
+    padding: 5px 10px;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 700px) {
+    .table {
+        width: 95%;
+    }
+    .data-name {
+        width: 30%;
+    }
+}

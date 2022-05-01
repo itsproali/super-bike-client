@@ -4,7 +4,7 @@ import {
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 import "./SocialLogin.css";
 import toast from "react-hot-toast";
@@ -12,6 +12,8 @@ import Spinner from "../Spinner/Spinner";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const [singInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
@@ -22,9 +24,9 @@ const SocialLogin = () => {
 
   useEffect(() => {
     if (googleUser || fbUser || githubUser) {
-      navigate("/");
+      navigate(from);
     }
-  }, [googleUser, fbUser, githubUser, navigate]);
+  }, [googleUser, fbUser, githubUser, navigate, from]);
 
   useEffect(() => {
     if (googleError) {

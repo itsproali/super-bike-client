@@ -3,7 +3,7 @@ import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase-init";
 import Spinner from "../Spinner/Spinner";
 import toast from "react-hot-toast";
@@ -13,6 +13,9 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || "/";
+
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -22,9 +25,9 @@ const Login = () => {
   useEffect(() => {
     if (user) {
       toast.success("Successfully Logged In");
-      navigate("/");
+      navigate(from);
     }
-  }, [navigate, user]);
+  }, [navigate, from , user]);
 
   useEffect(() => {
     if (resetError) {

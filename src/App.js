@@ -9,6 +9,8 @@ import Login from "./components/Login-Register/Login";
 import Register from "./components/Login-Register/Register";
 import Spinner from "./components/Spinner/Spinner";
 import { Toaster } from "react-hot-toast";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
+import ItemDetails from "./components/Items/ItemDetails";
 
 function App() {
   return (
@@ -18,6 +20,14 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <ItemDetails />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/loading" element={<Spinner />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
