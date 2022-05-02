@@ -89,7 +89,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/"
+                    to="/add"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                     onClick={() => setOpen(!open)}
                   >

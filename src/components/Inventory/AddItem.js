@@ -1,45 +1,53 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
-import "./Add_EditItem.css";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase-init";
 
-const EditItem = () => {
-  const { id } = useParams();
-  const [item, setItem] = useState({});
+const AddItem = () => {
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
 
-  // Load Item Details
-  useEffect(() => {
-    axios
-      .get(`https://super-bike-warehouse.herokuapp.com/item/${id}`)
-      .then((res) => {
-        setItem(res.data);
-      })
-      .catch((error) => console.error(error.message));
-  }, [id]);
-
-  const handleUpdate = (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
     const brand = e.target.brand.value;
     const price = e.target.price.value;
+    const quantity = e.target.quantity.value;
     const supplier = e.target.supplier.value;
     const description = e.target.description.value;
     const img = e.target.img.value;
     const engine = e.target.engine.value;
-    const item = { title, brand, price, supplier, description, img, engine };
+    const email = user.email;
+    const item = {
+      title,
+      brand,
+      price,
+      quantity,
+      supplier,
+      description,
+      img,
+      engine,
+      email,
+    };
 
-    axios.put(`https://super-bike-warehouse.herokuapp.com/edit/${id}`, { item }).then((res) => {
-      toast.success("Product Updated Successfully");
-      navigate("/inventories");
-    });
+    axios
+      .post(`https://super-bike-warehouse.herokuapp.com/add`, { item })
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Product Added Successfully");
+        navigate("/");
+      });
   };
 
   return (
     <div className="my-12">
+      <h1 className="text-center font-semibold mb-4 text-3xl text-red-600">
+        Add a New Product
+      </h1>
       <div className="form-container">
-        <form onSubmit={handleUpdate}>
+        <form onSubmit={handleAdd}>
           <div className="input-group">
             <label htmlFor="title">Title :</label>
             <input
@@ -47,7 +55,6 @@ const EditItem = () => {
               type="text"
               name="title"
               id="title"
-              defaultValue={item.title}
               required
             />
           </div>
@@ -58,7 +65,6 @@ const EditItem = () => {
               type="text"
               name="brand"
               id="brand"
-              defaultValue={item.brand}
               required
             />
           </div>
@@ -69,7 +75,16 @@ const EditItem = () => {
               type="text"
               name="price"
               id="price"
-              defaultValue={item.price}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="quantity">Quantity :</label>
+            <input
+              className="input-field"
+              type="text"
+              name="quantity"
+              id="quantity"
               required
             />
           </div>
@@ -80,7 +95,6 @@ const EditItem = () => {
               type="text"
               name="supplier"
               id="supplier"
-              defaultValue={item.supplier}
               required
             />
           </div>
@@ -91,7 +105,6 @@ const EditItem = () => {
               type="text"
               name="engine"
               id="engine"
-              defaultValue={item.engine}
               required
             />
           </div>
@@ -102,7 +115,6 @@ const EditItem = () => {
               type="text"
               name="img"
               id="img"
-              defaultValue={item.img}
               required
             />
           </div>
@@ -113,7 +125,6 @@ const EditItem = () => {
               name="description"
               id="description"
               rows="10"
-              defaultValue={item.description}
               required
             ></textarea>
           </div>
@@ -122,7 +133,7 @@ const EditItem = () => {
             <input
               className="red-btn w-full py-4 cursor-pointer"
               type="submit"
-              value="Update"
+              value="Add Item"
             />
           </div>
         </form>
@@ -131,4 +142,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default AddItem;

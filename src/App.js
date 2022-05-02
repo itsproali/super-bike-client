@@ -13,6 +13,7 @@ import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ItemDetails from "./components/Items/ItemDetails";
 import ManageInventory from "./components/Inventory/ManageInventory";
 import EditItem from "./components/Inventory/EditItem";
+import AddItem from "./components/Inventory/AddItem";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/inventories" element={<ManageInventory/>}></Route>
+        <Route path="/inventories" element={<ManageInventory />}></Route>
         <Route path="/blog" element={<Blog />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
@@ -31,9 +32,22 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="/edit/:id" element={<RequireAuth>
-          <EditItem/>
-        </RequireAuth>}></Route>
+        <Route
+          path="/edit/:id"
+          element={
+            <RequireAuth>
+              <EditItem />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/add"
+          element={
+            <RequireAuth>
+              <AddItem />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/loading" element={<Spinner />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
