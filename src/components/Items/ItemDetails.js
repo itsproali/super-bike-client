@@ -149,13 +149,16 @@ const ItemDetails = () => {
           <div
             className={`${
               modal ? "block modal shadow-2xl" : "hidden"
-            } duration-400`}
+            } duration-500`}
           >
             <form className="stock-form" onSubmit={handleStockForm}>
               <ImCross
                 className="text-red-600 cursor-pointer ml-auto"
                 onClick={() => setModal(false)}
               ></ImCross>
+              <h1 className="text-2xl text-center text-red-600 drop-shadow">
+                Restock Quantity
+              </h1>
               <input
                 className="stock-input"
                 type="number"

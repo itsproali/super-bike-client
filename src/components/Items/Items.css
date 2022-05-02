@@ -82,7 +82,7 @@
     border: none;
     border: 2px solid lightcoral;
     border-radius: 10px;
-    margin: 95px 0;
+    margin: 80px 0;
 }
 
 @media only screen and (max-width: 700px) {
@@ -92,5 +92,9 @@
 
     .data-name {
         width: 30%;
+    }
+
+    .modal {
+        width: 95%;
     }
 }

@@ -47,7 +47,7 @@ const Inventory = () => {
               </div>
               <div className="flex flex-col justify-between">
                 <div className="description">
-                  <h1 className="text-3xl font-semibold mb-4">{item.title}</h1>
+                  <h1 className="text-3xl font-semibold mb-4 cursor-pointer hover:text-red-600 duration-300">{item.title}</h1>
                   <p className="">{item.description.slice(0, 100) + "....."}</p>
                   <div className="price-container">
                     <BsArrowRight className="arrow"></BsArrowRight>
