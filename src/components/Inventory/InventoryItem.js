@@ -15,7 +15,7 @@ const InventoryItem = ({ item }) => {
         <div className="flex items-center justify-center m-4 ">
           <button
             className="gray-btn ml-auto mr-4 py-2 px-6 flex items-center"
-            onClick={() => navigate(`/inventory/${item._id}`)}
+            onClick={() => navigate(`/edit/${item._id}`)}
           >
             <FaEdit></FaEdit>
             <p className="ml-2">Edit</p>

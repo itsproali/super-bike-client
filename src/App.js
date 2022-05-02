@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ItemDetails from "./components/Items/ItemDetails";
 import ManageInventory from "./components/Inventory/ManageInventory";
+import EditItem from "./components/Inventory/EditItem";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="/edit/:id" element={<RequireAuth>
+          <EditItem/>
+        </RequireAuth>}></Route>
         <Route path="/loading" element={<Spinner />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
