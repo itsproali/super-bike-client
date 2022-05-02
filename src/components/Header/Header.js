@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -21,12 +22,16 @@ const Header = () => {
         } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-40`}
       >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
+
+          {/* Navbar Brand */}
           <Link to="/" className="flex items-center">
             <span className="text-red-600 self-center text-2xl font-semibold whitespace-nowrap">
               Super Bike
             </span>
           </Link>
           <div className="flex items-center md:order-2">
+
+          {/* User Controls */}
             {user ? (
               <button
                 type="button"
@@ -36,9 +41,9 @@ const Header = () => {
                 <span className="sr-only">Open user menu</span>
                 {user.photoURL ? (
                   <img
-                    className="w-8 h-8 rounded-full text-white"
+                    className="w-8 h-8 rounded-full text-slate-500"
                     src={user.photoURL}
-                    alt="User"
+                    alt="user"
                   />
                 ) : (
                   <CgProfile className="w-8 h-8"></CgProfile>
@@ -112,16 +117,14 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+
+            {/* Hamburger menu */}
             <button
-              data-collapse-toggle="mobile-menu-2"
-              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
               className="inline-flex items-center p-2 ml-1 text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700"
-              aria-controls="mobile-menu-2"
-              aria-expanded="false"
             >
-              <span className="sr-only">Open main menu</span>
               <svg
-                className="w-6 h-6"
+                className={`${menuOpen ? "hidden" : "block"} w-6 h-6`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +136,7 @@ const Header = () => {
                 ></path>
               </svg>
               <svg
-                className="hidden w-6 h-6"
+                className={`${menuOpen ? "block" : "hidden"} w-6 h-6`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -146,11 +149,14 @@ const Header = () => {
               </svg>
             </button>
           </div>
+
+          {/* Menu Links */}
           <div
-            className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-            id="mobile-menu-2"
+            className={`${menuOpen ? "block" : "hidden"} ${
+              location.pathname === "/" && "bg-white md:bg-transparent"
+            } justify-between items-center w-full md:flex md:w-auto md:order-1 duration-500`}
           >
-            <ul className="links flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+            <ul className="w-full md:w-auto flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <NavLink
                   to="/"

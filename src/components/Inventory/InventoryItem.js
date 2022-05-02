@@ -8,23 +8,28 @@ import toast from "react-hot-toast";
 const InventoryItem = ({ item }) => {
   const { _id, title, quantity, sold, img, price } = item;
   const navigate = useNavigate();
+
+  // Handle Delete
   const handleDelete = () => {
     const confirmation = window.confirm("Are you sure, you want to Delete?");
     if (confirmation) {
-      axios.delete(`http://localhost:5000/delete/${_id}`).then((res) => {
+      axios.delete(`https://super-bike-warehouse.herokuapp.com/delete/${_id}`).then((res) => {
         toast.success("Item Deleted");
-        navigate("/inventories");
       });
     }
   };
 
   return (
     <div className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg">
+
+      {/* Item Image */}
       <div className="inventory-image w-full lg:w-[400px] border-2 rounded-lg">
         <img className="block h-[270px] mx-auto" src={img} alt={title} />
       </div>
       <div className="ml-4 w-full flex flex-col justify-between">
         <div className="flex items-center justify-center m-4 ">
+
+          {/* Edit Button */}
           <button
             className="gray-btn ml-auto mr-4 py-2 px-6 flex items-center"
             onClick={() => navigate(`/edit/${item._id}`)}
@@ -32,6 +37,8 @@ const InventoryItem = ({ item }) => {
             <FaEdit></FaEdit>
             <p className="ml-2">Edit</p>
           </button>
+
+          {/* Delete Button */}
           <button
             className="red-btn py-2 px-6 flex items-center"
             onClick={handleDelete}
@@ -41,6 +48,7 @@ const InventoryItem = ({ item }) => {
           </button>
         </div>
 
+        {/* Item description */}
         <div>
           <Link className="block mb-4" to={`/inventory/${_id}`}>
             <h1 className="font-semibold text-2xl cursor-pointer hover:text-red-600 duration-500">

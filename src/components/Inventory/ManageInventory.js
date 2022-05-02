@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 const ManageInventory = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
+
+  // Load All Items
   useEffect(() => {
     axios
       .get("https://super-bike-warehouse.herokuapp.com/items")
@@ -20,11 +22,15 @@ const ManageInventory = () => {
         Total Found: {items.length} Bikes
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+
+        {/* Inventory Items */}
         <div className="md:col-span-3 lg:col-span-3">
           {items.map((item) => (
             <InventoryItem key={item._id} item={item}></InventoryItem>
           ))}
         </div>
+
+        {/* Inventory Manage side*/}
         <div className="w-full bg-white shadow-lg h-96 md:col-span-2 lg:col-span-2 flex items-center justify-center">
           {/* <form>
           <input className=" block w-full" type="text" name="search" id="search" />
