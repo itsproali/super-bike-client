@@ -2,10 +2,22 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const InventoryItem = ({ item }) => {
   const { _id, title, quantity, sold, img, price } = item;
   const navigate = useNavigate();
+  const handleDelete = () => {
+    const confirmation = window.confirm("Are you sure, you want to Delete?");
+    if (confirmation) {
+      axios.delete(`http://localhost:5000/delete/${_id}`).then((res) => {
+        toast.success("Item Deleted");
+        navigate("/inventories");
+      });
+    }
+  };
+
   return (
     <div className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg">
       <div className="inventory-image w-full lg:w-[400px] border-2 rounded-lg">
@@ -22,7 +34,7 @@ const InventoryItem = ({ item }) => {
           </button>
           <button
             className="red-btn py-2 px-6 flex items-center"
-            onClick={() => navigate(`/inventory/${item._id}`)}
+            onClick={handleDelete}
           >
             <MdDelete></MdDelete>
             <p className="ml-2">Delete</p>

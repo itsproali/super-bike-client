@@ -3,9 +3,10 @@ import axios from "axios";
 import "./Items.css";
 import { BsArrowRight } from "react-icons/bs";
 import { BiDetail } from "react-icons/bi";
+import { BsArrowReturnRight } from "react-icons/bs";
 import "aos";
 import Aos from "aos";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Inventory = () => {
   Aos.init();
@@ -47,11 +48,13 @@ const Inventory = () => {
               </div>
               <div className="flex flex-col justify-between">
                 <div className="description">
-                  <h1 className="text-3xl font-semibold mb-4 cursor-pointer hover:text-red-600 duration-300">{item.title}</h1>
+                  <h1 className="text-3xl font-semibold mb-4 cursor-pointer hover:text-red-600 duration-300">
+                    {item.title}
+                  </h1>
                   <p className="">{item.description.slice(0, 100) + "....."}</p>
                   <div className="price-container">
                     <BsArrowRight className="arrow"></BsArrowRight>
-                    <p className="font-semibold text-xl my-4 price">
+                    <p className="font-semibold text-xl my-4 price cursor-pointer">
                       Price:{" "}
                       <span className="text-red-600"> {item.price} BDT</span>
                     </p>
@@ -79,6 +82,15 @@ const Inventory = () => {
             </div>
           );
         })}
+      </div>
+      <div className="flex w-full justify-end mt-8">
+        <Link
+          to="/inventories"
+          className="text-blue-600 hover:text-red-600 py-2 px-6 flex items-center duration-300 text-xl"
+        >
+          <p className="mr-2">Manage Inventories</p>
+          <BsArrowReturnRight></BsArrowReturnRight>
+        </Link>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { MdSystemUpdateAlt, MdOutlineDeliveryDining } from "react-icons/md";
+import { BsArrowReturnRight } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import toast from "react-hot-toast";
 
@@ -129,50 +130,62 @@ const ItemDetails = () => {
             </tr>
           </tbody>
         </table>
-        <div className="flex items-center justify-end my-8">
-          <button
-            className="gray-btn mb-4 py-2 px-6 mx-4 flex items-center"
-            onClick={() => setModal(true)}
-          >
-            <MdSystemUpdateAlt></MdSystemUpdateAlt>
-            <p className="ml-2">ReStock</p>
-          </button>
-          <button
-            className="red-btn mb-4 py-2 px-6 flex items-center"
-            onClick={handleDeliver}
-          >
-            <MdOutlineDeliveryDining></MdOutlineDeliveryDining>
-            <p className="ml-2">Delivered</p>
-          </button>
+        <div className="flex flex-col sm:flex-row justify-between items-center my-8">
+          <div className="flex items-center">
+            <button
+              className="gray-btn mb-4 py-2 px-6 mx-4 flex items-center"
+              onClick={() => setModal(true)}
+            >
+              <MdSystemUpdateAlt></MdSystemUpdateAlt>
+              <p className="ml-2">ReStock</p>
+            </button>
+            <button
+              className="red-btn mb-4 py-2 px-6 flex items-center"
+              onClick={handleDeliver}
+            >
+              <MdOutlineDeliveryDining></MdOutlineDeliveryDining>
+              <p className="ml-2">Delivered</p>
+            </button>
 
-          {/* My Own modal */}
-          <div
-            className={`${
-              modal ? "block modal shadow-2xl" : "hidden"
-            } duration-500`}
-          >
-            <form className="stock-form" onSubmit={handleStockForm}>
-              <ImCross
-                className="text-red-600 cursor-pointer ml-auto"
-                onClick={() => setModal(false)}
-              ></ImCross>
-              <h1 className="text-2xl text-center text-red-600 drop-shadow">
-                Restock Quantity
-              </h1>
-              <input
-                className="stock-input"
-                type="number"
-                name="stock"
-                id="stock"
-                placeholder="Enter Restock quantity"
-                required
-              />
-              <input
-                className="red-btn py-3 w-full cursor-pointer"
-                type="submit"
-                value="Restock"
-              />
-            </form>
+            {/* My Own modal */}
+            <div
+              className={`${
+                modal ? "block modal shadow-2xl" : "hidden"
+              } duration-500`}
+            >
+              <form className="stock-form" onSubmit={handleStockForm}>
+                <ImCross
+                  className="text-red-600 cursor-pointer ml-auto"
+                  onClick={() => setModal(false)}
+                ></ImCross>
+                <h1 className="text-2xl text-center text-red-600 drop-shadow">
+                  Restock Quantity
+                </h1>
+                <input
+                  className="stock-input"
+                  type="number"
+                  name="stock"
+                  id="stock"
+                  placeholder="Enter Restock quantity"
+                  required
+                />
+                <input
+                  className="red-btn py-3 w-full cursor-pointer"
+                  type="submit"
+                  value="Restock"
+                />
+              </form>
+            </div>
+          </div>
+
+          <div className="">
+            <Link
+              to="/inventories"
+              className="text-blue-600 hover:text-red-600 py-2 px-6 flex items-center duration-300 text-xl"
+            >
+              <p className="mr-2">Manage Inventories</p>
+              <BsArrowReturnRight></BsArrowReturnRight>
+            </Link>
           </div>
         </div>
       </div>
