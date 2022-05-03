@@ -14,6 +14,7 @@ import ItemDetails from "./components/Items/ItemDetails";
 import ManageInventory from "./components/Inventory/ManageInventory";
 import EditItem from "./components/Inventory/EditItem";
 import AddItem from "./components/Inventory/AddItem";
+import MyItem from "./components/MyItem/MyItem";
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
           element={
             <RequireAuth>
               <AddItem />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/my-item"
+          element={
+            <RequireAuth>
+              <MyItem />
             </RequireAuth>
           }
         ></Route>

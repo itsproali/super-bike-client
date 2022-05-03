@@ -1,30 +1,22 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+// import axios from "axios";
+import React from "react";
 import InventoryItem from "./InventoryItem";
 import { MdPlaylistAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import useItems from "../../hooks/useItems";
 
 const ManageInventory = () => {
-  const [items, setItems] = useState([]);
   const navigate = useNavigate();
+  const [items] = useItems([]);
 
-  // Load All Items
-  useEffect(() => {
-    axios
-      .get("https://super-bike-warehouse.herokuapp.com/items")
-      .then((res) => {
-        setItems(res.data);
-      });
-  }, []);
   return (
     <div className="my-16 mx-3 md:mx-8 lg:mx-12">
       <h1 className="text-xl font-semibold text-red-600">
         Total Found: {items.length} Bikes
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
-
         {/* Inventory Items */}
-        <div className="md:col-span-3 lg:col-span-3">
+        <div className="md:col-span-3 lg:col-span-3 order-2 md:order-1">
           {items.map((item) => (
             <InventoryItem key={item._id} item={item}></InventoryItem>
           ))}

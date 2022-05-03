@@ -15,6 +15,7 @@ const AddItem = () => {
     const brand = e.target.brand.value;
     const price = e.target.price.value;
     const quantity = e.target.quantity.value;
+    const sold = 0;
     const supplier = e.target.supplier.value;
     const description = e.target.description.value;
     const img = e.target.img.value;
@@ -25,6 +26,7 @@ const AddItem = () => {
       brand,
       price,
       quantity,
+      sold,
       supplier,
       description,
       img,

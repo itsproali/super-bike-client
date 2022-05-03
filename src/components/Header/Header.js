@@ -73,7 +73,7 @@ const Header = () => {
                   {user?.email}
                 </span>
               </div>
-              <ul className="py-1" aria-labelledby="dropdown">
+              <ul className="py-1">
                 <li>
                   <Link
                     to="/inventories"
@@ -85,7 +85,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/"
+                    to="/my-item"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                     onClick={() => setOpen(!open)}
                   >
