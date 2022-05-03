@@ -22,7 +22,6 @@ const Header = () => {
         } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-40`}
       >
         <div className="container flex flex-wrap justify-between items-center mx-auto">
-
           {/* Navbar Brand */}
           <Link to="/" className="flex items-center">
             <span className="text-red-600 self-center text-2xl font-semibold whitespace-nowrap">
@@ -30,8 +29,7 @@ const Header = () => {
             </span>
           </Link>
           <div className="flex items-center md:order-2">
-
-          {/* User Controls */}
+            {/* User Controls */}
             {user ? (
               <button
                 type="button"
@@ -85,7 +83,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/my-item"
+                    to="/my-items"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                     onClick={() => setOpen(!open)}
                   >

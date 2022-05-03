@@ -1,5 +1,5 @@
-// import axios from "axios";
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import InventoryItem from "./InventoryItem";
 import { MdPlaylistAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +8,18 @@ import useItems from "../../hooks/useItems";
 const ManageInventory = () => {
   const navigate = useNavigate();
   const [items] = useItems([]);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("https://super-bike-warehouse.herokuapp.com/item-count")
+      .then((res) => setCount(res.data));
+  }, [items]);
 
   return (
     <div className="my-16 mx-3 md:mx-8 lg:mx-12">
       <h1 className="text-xl font-semibold text-red-600">
-        Total Found: {items.length} Bikes
+        Total Found: {count} Bikes
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
         {/* Inventory Items */}

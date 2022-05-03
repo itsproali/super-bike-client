@@ -10,7 +10,7 @@ const MyItem = () => {
   const email = user.email;
 
   useEffect(() => {
-    axios.post(`http://localhost:5000/my-items`, { email }).then((res) => {
+    axios.post(`https://super-bike-warehouse.herokuapp.com/my-items`, { email }).then((res) => {
       setMyItems(res.data);
     });
   }, [myItems, email]);
