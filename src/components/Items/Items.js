@@ -16,9 +16,8 @@ const Inventory = () => {
   useEffect(() => {
     axios
       .get("https://super-bike-warehouse.herokuapp.com/items/6")
-      .then((res) => {
-        setItems(res.data);
-      });
+      .then((res) => setItems(res.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (

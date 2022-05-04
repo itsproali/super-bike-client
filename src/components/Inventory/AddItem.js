@@ -40,7 +40,8 @@ const AddItem = () => {
         console.log(res.data);
         toast.success("Product Added Successfully");
         navigate("/");
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

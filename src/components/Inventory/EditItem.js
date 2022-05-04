@@ -30,10 +30,13 @@ const EditItem = () => {
     const engine = e.target.engine.value;
     const item = { title, brand, price, supplier, description, img, engine };
 
-    axios.put(`https://super-bike-warehouse.herokuapp.com/edit/${id}`, { item }).then((res) => {
-      toast.success("Product Updated Successfully");
-      navigate("/inventories");
-    });
+    axios
+      .put(`https://super-bike-warehouse.herokuapp.com/edit/${id}`, { item })
+      .then((res) => {
+        toast.success("Product Updated Successfully");
+        navigate("/inventories");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

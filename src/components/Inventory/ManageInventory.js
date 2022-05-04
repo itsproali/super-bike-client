@@ -13,8 +13,9 @@ const ManageInventory = () => {
   useEffect(() => {
     axios
       .get("https://super-bike-warehouse.herokuapp.com/item-count")
-      .then((res) => setCount(res.data));
-  }, [items]);
+      .then((res) => setCount(res.data.count))
+      .catch((error) => console.log(error));
+  }, [count, items]);
 
   return (
     <div className="my-16 mx-3 md:mx-8 lg:mx-12">

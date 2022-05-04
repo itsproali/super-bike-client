@@ -57,7 +57,8 @@ const ItemDetails = () => {
           setQuantity(quantity - 1);
           setSold(quantity + 1);
           toast.success("Delivered Successfully");
-        });
+        })
+        .catch((error) => console.log(error));
     } else {
       toast.error("Out of Stock");
     }

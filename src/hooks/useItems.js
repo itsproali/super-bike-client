@@ -8,9 +8,8 @@ const useItems = () => {
   useEffect(() => {
     axios
       .get("https://super-bike-warehouse.herokuapp.com/items")
-      .then((res) => {
-        setItems(res.data);
-      });
+      .then((res) => setItems(res.data))
+      .catch((error) => console.log(error));
   }, [items]);
   return [items, setItems];
 };
