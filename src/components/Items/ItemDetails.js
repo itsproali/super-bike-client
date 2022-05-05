@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdSystemUpdateAlt, MdOutlineDeliveryDining } from "react-icons/md";
 import { BsArrowReturnRight } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import toast from "react-hot-toast";
+import { FaEdit } from "react-icons/fa";
 
 const ItemDetails = () => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const ItemDetails = () => {
   const [quantity, setQuantity] = useState(0);
   const [sold, setSold] = useState(0);
   const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
 
   // Load Item Details
   useEffect(() => {
@@ -67,9 +69,19 @@ const ItemDetails = () => {
   return (
     <div className="mx-2 md:mx-16 lg:mx-32">
       <div>
-        <h1 className="text-center text-3xl text-red-600 my-6 font-semibold">
-          {item.title}
-        </h1>
+        <div className="flex justify-center items-center">
+          <h1 className="text-center text-3xl text-red-600 my-6 font-semibold">
+            {item.title}
+          </h1>
+          {/* Edit Button */}
+          <button
+            className="gray-btn ml-4 py-2 px-6 flex items-center"
+            onClick={() => navigate(`/edit/${item._id}`)}
+          >
+            <FaEdit></FaEdit>
+            <p className="ml-2">Edit</p>
+          </button>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 p-4">
           <div className="w-full md:w-[500px] lg:w-full mx-auto">
             <img

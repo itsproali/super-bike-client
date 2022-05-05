@@ -118,6 +118,7 @@ const AddItem = () => {
               type="text"
               name="img"
               id="img"
+              placeholder="http://www.photo.png"
               required
             />
           </div>

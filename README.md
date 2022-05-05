@@ -1,5 +1,6 @@
 # Super Bike Warehouse
 
+Welcome to ocean of bike. This is the warehouse of super bike store. Here you can manage your store. You can add new product to your store, you can edit previously added product's data, also you can remove a product from warehouse and many more features available on this warehouse.
 
 ### [Super Bike Warehouse](https://super-bike-warehouse.web.app/)
 

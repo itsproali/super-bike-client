@@ -50,7 +50,7 @@ const Inventory = () => {
                   <h1 className="text-3xl font-semibold mb-4 cursor-pointer hover:text-red-600 duration-300">
                     {item.title}
                   </h1>
-                  <p className="">{item.description.slice(0, 100) + "....."}</p>
+                  <p className="text-gray-500">{item.description.slice(0, 100) + "....."}</p>
                   <div className="price-container">
                     <BsArrowRight className="arrow"></BsArrowRight>
                     <p className="font-semibold text-xl my-4 price cursor-pointer">
