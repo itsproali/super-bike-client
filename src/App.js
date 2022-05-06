@@ -16,8 +16,14 @@ import EditItem from "./components/Inventory/EditItem";
 import AddItem from "./components/Inventory/AddItem";
 import MyItem from "./components/MyItem/MyItem";
 import NotFound from "./components/NotFound/NotFound";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div>
       <Header></Header>

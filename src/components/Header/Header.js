@@ -17,6 +17,8 @@ const Header = () => {
   return (
     <div>
       <nav
+        data-aos="fade-down"
+        data-aos-duration="1500"
         className={`${
           location.pathname === "/" ? "bg-transparent" : "bg-white shadow-lg"
         } border-gray-200 px-4 sm:px-16 py-2.5 rounded md:rounded-none relative top-0 z-40`}

@@ -6,7 +6,11 @@ import "./Banner.css";
 const Banner = () => {
   return (
     <div className="banner">
-      <div className="banner-text">
+      <div
+        className="banner-text"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
         <h3 className="banner-subtitle">Best Bike Dealer</h3>
         <h1 className="banner-title">Popular Bike</h1>
         <h1 className="banner-title mb-6">Dealership</h1>

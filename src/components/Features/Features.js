@@ -11,7 +11,11 @@ const Features = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-        <div className="order-1 text-center md:text-right ">
+        <div
+          className="order-1 text-center md:text-right "
+          data-aos="fade-down"
+          data-aos-duration="1000"
+        >
           <div className="my-4 md:my-8">
             <div className="inline-block p-2 border rounded-full border-gray-500 border-dashed hover:border-red-600 duration-300">
               <RiHomeGearLine className="mx-auto md:mx-0 md:ml-auto text-right text-gray-500 hover:text-red-600 text-3xl duration-300 "></RiHomeGearLine>
@@ -33,10 +37,18 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="w-full md:w-auto md:order-1 mx-auto hover:scale-105 duration-700">
+        <div
+          className="w-full md:w-auto md:order-1 mx-auto hover:scale-105 duration-700"
+          data-aos="zoom-in"
+          data-aos-duration="2000"
+        >
           <img src="https://i.ibb.co/SfgzHjv/suzuki-circle.png" alt="Bike" />
         </div>
-        <div className="order-2 text-center md:text-left ">
+        <div
+          className="order-2 text-center md:text-left "
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <div className="my-4 md:my-8">
             <div className="inline-block p-2 border rounded-full border-gray-500 border-dashed hover:border-red-600 duration-300">
               <IoCarSportSharp className="mx-auto md:mx-0 md:ml-auto text-right text-gray-500 hover:text-red-600 text-3xl duration-300 "></IoCarSportSharp>

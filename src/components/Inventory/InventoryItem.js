@@ -27,7 +27,9 @@ const InventoryItem = ({ item }) => {
   };
 
   return (
-    <div className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg">
+    <div className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg"
+    data-aos="zoom-in-down"
+        data-aos-duration="1000">
       {/* Item Image */}
       <div className="inventory-image w-full lg:w-[300px] border-2 rounded-lg">
         <img className="block h-[200px] mx-auto" src={img} alt={title} />

@@ -5,11 +5,9 @@ import { BsArrowRight } from "react-icons/bs";
 import { BiDetail } from "react-icons/bi";
 import { BsArrowReturnRight } from "react-icons/bs";
 import "aos";
-import Aos from "aos";
 import { Link, useNavigate } from "react-router-dom";
 
 const Inventory = () => {
-  Aos.init();
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
 
@@ -24,7 +22,7 @@ const Inventory = () => {
     <div className="mt-[100vh] mb-32 mx-4 md:mx-10 lg:mx-32">
       <div className="text-center">
         <h1
-          data-aos="zoom-in-right"
+          data-aos="zoom-in-down"
           className="inline-block text-3xl my-6 text-red-600 mx-auto font-bold pb-2 border-b-4 border-b-red-400 border-dotted"
         >
           Products
@@ -34,7 +32,8 @@ const Inventory = () => {
         {items.map((item) => {
           return (
             <div
-              data-aos="zoom-in-right"
+            data-aos="fade-down"
+            data-aos-duration="2000"
               className="flex flex-col p-6 shadow-xl hover:shadow-2xl hover:shadow-red-400 duration-700 bg-white rounded-lg"
               key={item._id}
             >
@@ -50,7 +49,9 @@ const Inventory = () => {
                   <h1 className="text-3xl font-semibold mb-4 cursor-pointer hover:text-red-600 duration-300">
                     {item.title}
                   </h1>
-                  <p className="text-gray-500">{item.description.slice(0, 100) + "....."}</p>
+                  <p className="text-gray-500">
+                    {item.description.slice(0, 100) + "....."}
+                  </p>
                   <div className="price-container">
                     <BsArrowRight className="arrow"></BsArrowRight>
                     <p className="font-semibold text-xl my-4 price cursor-pointer">
