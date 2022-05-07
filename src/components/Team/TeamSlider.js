@@ -50,7 +50,7 @@ const TeamSlider = () => {
   const [members, setMembers] = useState();
   useEffect(() => {
     axios
-      .get("http://localhost:5000/members")
+      .get("https://super-bike-warehouse.herokuapp.com/members")
       .then(async (res) => {
         const loadedMembers = await setMembers(res.data);
       })
