@@ -1,0 +1,4 @@
+.bike-service-container {
+    background: linear-gradient(90deg, rgba(255, 0,0, 0.8), rgba(255, 0, 0, 0.75)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRR87LMtwCr177Feg_wLyp2Wa1OW38J-N1cA&usqp=CAU) no-repeat center center ;
+    background-size: cover;
+}
