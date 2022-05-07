@@ -32,7 +32,7 @@ const BikeService = () => {
           </div>
         </div>
         <div
-          className="bike-service-image mx-auto md:ml-auto order-1 md:order-2"
+          className="bike-service-image mx-auto md:mx-0 md:ml-auto order-1 md:order-2"
           data-aos="fade-down"
           data-aos-duration="1500"
         >

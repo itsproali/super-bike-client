@@ -19,6 +19,8 @@ import NotFound from "./components/NotFound/NotFound";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import "../node_modules/slick-carousel/slick/slick.css";
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 function App() {
   useEffect(() => {

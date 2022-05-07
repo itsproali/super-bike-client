@@ -1,0 +1,4 @@
+.team-container {
+    background: linear-gradient(90deg, rgba(31, 41, 55, 0.98), rgba(31, 41, 55, 0.95)), url(https://i.ibb.co/sJNznr4/team.jpg) no-repeat center center;
+    background-size: cover;
+}
