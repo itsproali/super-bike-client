@@ -44,21 +44,20 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-4">
-                <Link to="/" className="hover:underline">
+                <a href="https://twitter.com/itsproali" target="blank" className="hover:underline">
                   Twitter
-                </Link>
+                </a>
               </li>
               <li className="mb-4">
-                <Link to="/" className="hover:underline">
+              <a href="https://facebook.com/itsproali" target="blank" className="hover:underline">
                   Facebook
-                </Link>
+                </a>
               </li>
               <Link to="/" className="hover:underline"></Link>
               <li className="mb-4">
-                <Link to="/" className="hover:underline"></Link>
-                <Link to="/" className="hover:underline">
+                <a href="mailto:itsproali@gmail.com" target="blank" className="hover:underline">
                   Contact Us
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

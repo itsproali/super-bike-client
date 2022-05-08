@@ -64,6 +64,10 @@ const TeamSlider = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    variableWidth: true,
+    centerMargin: "20px",
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -72,14 +76,14 @@ const TeamSlider = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 1,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToScroll: 0,
         },
       },
     ],
@@ -90,13 +94,16 @@ const TeamSlider = () => {
         {members?.map((member) => (
           <div
             key={member._id}
-            className="mx-6 border-8 border-white hover:border-red-600 rounded-lg duration-700 text-center"
+            className="border-8 border-white hover:border-red-600 rounded-lg duration-700 text-center"
+            style={{ width: "300px" }}
           >
             <img className="w-full" src={member.img} alt="Mohammad Ali" />
             <h1 className="text-xl text-white bg-red-600 p-4">{member.name}</h1>
-            <h2 className="text-2xl font-medium mt-4 mb-2 text-white">Shop Owner</h2>
-            <h3 className="text-gray-500 my-1">+8801884622861</h3>
-            <h3 className="text-red-600 mb-6">itsproali@gmail.com</h3>
+            <h2 className="text-2xl font-medium mt-4 mb-2 text-white">
+              {member.post}
+            </h2>
+            <h3 className="text-gray-500 my-1">{member.phone}</h3>
+            <h3 className="text-red-600 mb-6">{member.email}</h3>
           </div>
         ))}
       </Slider>
