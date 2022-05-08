@@ -8,12 +8,13 @@ import auth from "../../firebase-init";
 import Spinner from "../Spinner/Spinner";
 import toast from "react-hot-toast";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const location = useLocation()
+  const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -24,10 +25,19 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
+      const userId = user.uid;
+      axios
+        .post("https://super-bike-warehouse.herokuapp.com//getToken", {
+          userId,
+        })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("accessToken", res.data.accessToken);
+        });
       toast.success("Successfully Logged In");
       navigate(from);
     }
-  }, [navigate, from , user]);
+  }, [navigate, from, user]);
 
   useEffect(() => {
     if (resetError) {
@@ -51,9 +61,14 @@ const Login = () => {
     return <Spinner></Spinner>;
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+    // const userId = user.uid;
+    // const { data } = await axios.post("http://localhost:5000/getToken", {
+    //   userId,
+    // });
+    // localStorage.setItem("accessToken", data.accessToken);
   };
 
   const resetPassword = () => {

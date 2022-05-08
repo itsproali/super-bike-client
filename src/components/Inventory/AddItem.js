@@ -20,7 +20,7 @@ const AddItem = () => {
     const description = e.target.description.value;
     const img = e.target.img.value;
     const engine = e.target.engine.value;
-    const email = user.email;
+    const uid = user.uid;
     const item = {
       title,
       brand,
@@ -31,7 +31,7 @@ const AddItem = () => {
       description,
       img,
       engine,
-      email,
+      uid,
     };
 
     axios
@@ -52,7 +52,7 @@ const AddItem = () => {
       <div className="form-container">
         <form onSubmit={handleAdd}>
           <div className="input-group">
-            <label htmlFor="title">Title :</label>
+            <label htmlFor="title">Product Name :</label>
             <input
               className="input-field"
               type="text"

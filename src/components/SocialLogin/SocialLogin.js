@@ -9,6 +9,7 @@ import auth from "../../firebase-init";
 import "./SocialLogin.css";
 import toast from "react-hot-toast";
 import Spinner from "../Spinner/Spinner";
+import axios from "axios";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
@@ -24,7 +25,23 @@ const SocialLogin = () => {
 
   useEffect(() => {
     if (googleUser || fbUser || githubUser) {
-      navigate(from);
+      let userId;
+      if (googleUser) {
+        userId = googleUser.userId;
+      } else if (fbUser) {
+        userId = fbUser.uid;
+      } else {
+        userId = githubUser.uid;
+      }
+      axios
+        .post("https://super-bike-warehouse.herokuapp.com//getToken", {
+          userId,
+        })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("accessToken", res.data.accessToken);
+        });
+      navigate(from, { replace: true });
     }
   }, [googleUser, fbUser, githubUser, navigate, from]);
 

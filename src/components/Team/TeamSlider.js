@@ -44,15 +44,13 @@ function SamplePrevArrow(props) {
   );
 }
 
-// export default class TeamSlider extends Component {
-//   render() {
 const TeamSlider = () => {
   const [members, setMembers] = useState();
   useEffect(() => {
     axios
       .get("https://super-bike-warehouse.herokuapp.com/members")
       .then(async (res) => {
-        const loadedMembers = await setMembers(res.data);
+        await setMembers(res.data);
       })
       .catch((error) => console.log(error.message));
   }, [members]);
@@ -65,7 +63,7 @@ const TeamSlider = () => {
     slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 2000,
     variableWidth: true,
     centerMargin: "20px",
     nextArrow: <SampleNextArrow />,
@@ -110,6 +108,5 @@ const TeamSlider = () => {
     </div>
   );
 };
-// }
 
 export default TeamSlider;

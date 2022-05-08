@@ -7,12 +7,21 @@ import InventoryItem from "../Inventory/InventoryItem";
 const MyItem = () => {
   const [user] = useAuthState(auth);
   const [myItems, setMyItems] = useState([]);
-  const email = user.email;
+  const uid = user?.uid;
 
   useEffect(() => {
-    axios.post(`https://super-bike-warehouse.herokuapp.com/my-items`, { email }).then((res) => setMyItems(res.data))
-    .catch((error) => console.log(error));
-  }, [myItems, email]);
+    const getMyItems = async () => {
+      await axios
+        .get(`http://localhost:5000/my-items?uid=${uid}`, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((res) => setMyItems(res.data))
+        .catch((error) => console.log(error));
+    };
+    getMyItems();
+  }, [myItems, uid]);
 
   return (
     <div className="my-8 mx-4 md:mx-16">
