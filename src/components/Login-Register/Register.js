@@ -9,6 +9,7 @@ import Spinner from "../Spinner/Spinner";
 import "./Login_Register.css";
 import toast from "react-hot-toast";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -47,11 +48,23 @@ const Register = () => {
     e.preventDefault();
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName, photoURL });
+
+    const userId = user.uid;
+    axios
+      .post("https://super-bike-warehouse.herokuapp.com/getToken", {
+        userId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("accessToken", res.data.accessToken);
+      });
   };
 
   return (
     <div>
-      <h1 className="text-3xl text-center text-blue-600 my-10 font-semibold">Register</h1>
+      <h1 className="text-3xl text-center text-blue-600 my-10 font-semibold">
+        Register
+      </h1>
       <div className="form-container">
         <form onSubmit={handleRegister}>
           <div className="mb-6">

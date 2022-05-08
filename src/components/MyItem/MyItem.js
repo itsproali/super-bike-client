@@ -12,7 +12,7 @@ const MyItem = () => {
   useEffect(() => {
     const getMyItems = async () => {
       await axios
-        .get(`http://localhost:5000/my-items?uid=${uid}`, {
+        .get(`https://super-bike-warehouse.herokuapp.com/my-items?uid=${uid}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },

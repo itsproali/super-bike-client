@@ -34,7 +34,7 @@ const SocialLogin = () => {
         userId = githubUser.uid;
       }
       axios
-        .post("https://super-bike-warehouse.herokuapp.com//getToken", {
+        .post("https://super-bike-warehouse.herokuapp.com/getToken", {
           userId,
         })
         .then((res) => {

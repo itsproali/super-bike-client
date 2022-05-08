@@ -25,15 +25,6 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      const userId = user.uid;
-      axios
-        .post("https://super-bike-warehouse.herokuapp.com//getToken", {
-          userId,
-        })
-        .then((res) => {
-          console.log(res.data);
-          localStorage.setItem("accessToken", res.data.accessToken);
-        });
       toast.success("Successfully Logged In");
       navigate(from);
     }
@@ -64,11 +55,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(email, password);
-    // const userId = user.uid;
-    // const { data } = await axios.post("http://localhost:5000/getToken", {
-    //   userId,
-    // });
-    // localStorage.setItem("accessToken", data.accessToken);
+
+    const userId = user.uid;
+    axios
+      .post("https://super-bike-warehouse.herokuapp.com/getToken", {
+        userId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("accessToken", res.data.accessToken);
+      });
   };
 
   const resetPassword = () => {
@@ -121,12 +117,12 @@ const Login = () => {
             </label>
           </div>
           <div className="text-right  my-4">
-            <button
+            <p
               onClick={resetPassword}
-              className="text-blue-600 hover:underline"
+              className="text-blue-600 hover:underline cursor-pointer"
             >
               Forgotten Password?
-            </button>
+            </p>
           </div>
 
           <input
