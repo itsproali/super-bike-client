@@ -3,7 +3,7 @@ import Banner from "../Banner/Banner";
 import BikeService from "../BikeService/BikeService";
 import Features from "../Features/Features";
 import Items from "../Items/Items";
-import Review from "../Team/Team";
+import Team from "../Team/Team";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
       <Banner />
       <Items className="h-[100vh]"></Items>
       <Features></Features>
-      <Review></Review>
+      <Team></Team>
       <BikeService></BikeService>
     </div>
   );

@@ -12,7 +12,7 @@ const ManageInventory = () => {
 
   useEffect(() => {
     axios
-      .get("http://super-bike-warehouse.herokuapp.com/item-count")
+      .get("https://super-bike-warehouse.herokuapp.com/item-count")
       .then((res) => setCount(res.data.count))
       .catch((error) => console.log(error));
   }, [count, items]);

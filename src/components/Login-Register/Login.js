@@ -25,8 +25,17 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      toast.success("Successfully Logged In");
-      navigate(from);
+      const userId = user.user.uid;
+      axios
+        .post("http://localhost:5000/getToken", {
+          userId,
+        })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("accessToken", res.data.accessToken);
+          toast.success("Successfully Logged In");
+          navigate(from);
+        });
     }
   }, [navigate, from, user]);
 
@@ -56,15 +65,15 @@ const Login = () => {
     e.preventDefault();
     await signInWithEmailAndPassword(email, password);
 
-    const userId = user.uid;
-    axios
-      .post("https://super-bike-warehouse.herokuapp.com/getToken", {
-        userId,
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("accessToken", res.data.accessToken);
-      });
+    // const userId = user.uid;
+    // axios
+    //   .post("http://localhost:5000/getToken", {
+    //     userId,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     localStorage.setItem("accessToken", res.data.accessToken);
+    //   });
   };
 
   const resetPassword = () => {

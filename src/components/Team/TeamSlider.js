@@ -65,7 +65,6 @@ const TeamSlider = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     variableWidth: true,
-    centerMargin: "20px",
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -92,7 +91,7 @@ const TeamSlider = () => {
         {members?.map((member) => (
           <div
             key={member._id}
-            className="border-8 border-white hover:border-red-600 rounded-lg duration-700 text-center"
+            className="border-8 mx-6 border-white hover:border-red-600 rounded-lg duration-700 text-center"
             style={{ width: "300px" }}
           >
             <img className="w-full" src={member.img} alt="Mohammad Ali" />
