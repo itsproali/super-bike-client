@@ -61,10 +61,8 @@ const TeamSlider = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 2000,
-    variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -73,14 +71,13 @@ const TeamSlider = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 0,
         },
       },
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 0,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -89,10 +86,10 @@ const TeamSlider = () => {
     <div className="">
       <Slider {...settings}>
         {members?.map((member) => (
+          <div key={member._id}>
           <div
-            key={member._id}
-            className="border-8 mx-6 border-white hover:border-red-600 rounded-lg duration-700 text-center"
-            style={{ width: "300px" }}
+            className="border-8 mx-4 border-white hover:border-red-600 rounded-lg duration-700 text-center"
+            // style={{ width: "300px" }}
           >
             <img className="w-full" src={member.img} alt="Mohammad Ali" />
             <h1 className="text-xl text-white bg-red-600 p-4">{member.name}</h1>
@@ -102,6 +99,7 @@ const TeamSlider = () => {
             <h3 className="text-gray-500 my-1">{member.phone}</h3>
             <h3 className="text-red-600 mb-6">{member.email}</h3>
           </div>
+        </div>
         ))}
       </Slider>
     </div>
