@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import useItems from "../../hooks/useItems";
 
 const InventoryItem = ({ item }) => {
@@ -12,24 +12,43 @@ const InventoryItem = ({ item }) => {
   const navigate = useNavigate();
 
   // Handle Delete
-  const handleDelete = (id) => {
-    const confirmation = window.confirm("Are you sure, you want to Delete?");
-    if (confirmation) {
+  const handleDelete = async (id) => {
+    const { value: password } = await Swal.fire({
+      title: "Enter your password",
+      input: "password",
+      inputLabel: "Password",
+      inputPlaceholder: "Enter your password",
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: "off",
+        autocorrect: "off",
+      },
+    });
+
+    if (password === "delete") {
+      Swal.fire({ icon: "success", text: "Item Deleted successfully" });
       axios
         .delete(`https://super-bike-warehouse.herokuapp.com/delete/${id}`)
         .then((res) => {
           const remaining = items.filter((item) => item._id !== id);
           console.log(remaining);
           setItems(remaining);
-          toast.success("Item Deleted");
         });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You entered a wrong password!",
+      });
     }
   };
 
   return (
-    <div className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg"
-    data-aos="zoom-in-down"
-        data-aos-duration="1000">
+    <div
+      className="inventory-item flex flex-col lg:flex-row bg-white p-4 rounded my-4 shadow-lg"
+      data-aos="zoom-in-down"
+      data-aos-duration="1000"
+    >
       {/* Item Image */}
       <div className="inventory-image w-full lg:w-[300px] border-2 rounded-lg">
         <img className="block h-[200px] mx-auto" src={img} alt={title} />
