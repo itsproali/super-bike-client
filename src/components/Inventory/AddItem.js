@@ -35,7 +35,7 @@ const AddItem = () => {
     };
 
     axios
-      .post(`https://super-bike-warehouse.herokuapp.com/add`, { item })
+      .post(`https://super-bike-server.vercel.app/add`, { item })
       .then((res) => {
         console.log(res.data);
         toast.success("Product Added Successfully");

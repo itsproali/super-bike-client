@@ -7,7 +7,7 @@ const useItems = () => {
   // Load All Items
   useEffect(() => {
     axios
-      .get("https://super-bike-warehouse.herokuapp.com/items")
+      .get("https://super-bike-server.vercel.app/items")
       .then((res) => setItems(res.data))
       .catch((error) => console.log(error));
   }, [items]);

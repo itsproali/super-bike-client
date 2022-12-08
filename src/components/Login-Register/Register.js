@@ -51,7 +51,7 @@ const Register = () => {
 
     const userId = user.uid;
     axios
-      .post("https://super-bike-warehouse.herokuapp.com/getToken", {
+      .post("https://super-bike-server.vercel.app/getToken", {
         userId,
       })
       .then((res) => {
@@ -115,14 +115,14 @@ const Register = () => {
 
           <div className="mb-6">
             <label
-              htmlFor="name"
+              htmlFor="photo"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Your photoURL (optional)
             </label>
             <input
               type="text"
-              id="name"
+              id="photo"
               className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               placeholder="https://www.photo.png"
               onChange={(e) => setPhotoURL(e.target.value)}

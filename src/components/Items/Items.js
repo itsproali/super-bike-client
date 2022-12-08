@@ -13,7 +13,7 @@ const Inventory = () => {
 
   useEffect(() => {
     axios
-      .get("https://super-bike-warehouse.herokuapp.com/items/6")
+      .get("https://super-bike-server.vercel.app/items/6")
       .then((res) => setItems(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -32,8 +32,8 @@ const Inventory = () => {
         {items.map((item) => {
           return (
             <div
-            data-aos="fade-down"
-            data-aos-duration="2000"
+              data-aos="fade-down"
+              data-aos-duration="2000"
               className="flex flex-col p-6 shadow-xl hover:shadow-2xl hover:shadow-red-400 duration-700 bg-white rounded-lg"
               key={item._id}
             >

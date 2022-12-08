@@ -18,7 +18,7 @@ const ItemDetails = () => {
   // Load Item Details
   useEffect(() => {
     axios
-      .get(`https://super-bike-warehouse.herokuapp.com/item/${id}`)
+      .get(`https://super-bike-server.vercel.app/item/${id}`)
       .then((res) => {
         setItem(res.data);
         setQuantity(res.data.quantity);
@@ -34,7 +34,7 @@ const ItemDetails = () => {
     console.log(stock);
     if (stock < 999 && stock > 0) {
       axios
-        .put(`https://super-bike-warehouse.herokuapp.com/stockItem/${id}`, {
+        .put(`https://super-bike-server.vercel.app/stockItem/${id}`, {
           quantity,
           stock,
         })
@@ -51,7 +51,7 @@ const ItemDetails = () => {
   const handleDeliver = async () => {
     if (quantity > 0) {
       axios
-        .put(`https://super-bike-warehouse.herokuapp.com/item/${id}`, {
+        .put(`https://super-bike-server.vercel.app/item/${id}`, {
           quantity,
           sold,
         })
@@ -94,9 +94,11 @@ const ItemDetails = () => {
               alt={item.title}
             />
           </div>
-          <div className=" mt-6 lg:mt-0 lg:ml-6"
-          data-aos="zoom-in-left"
-          data-aos-duration="1000">
+          <div
+            className=" mt-6 lg:mt-0 lg:ml-6"
+            data-aos="zoom-in-left"
+            data-aos-duration="1000"
+          >
             <h2 className="text-2xl font-semibold mb-4">Description</h2>
             <p className="text-justify md:text-xl text-slate-600">
               {item.description}
@@ -106,9 +108,7 @@ const ItemDetails = () => {
         <h1 className="text-center text-2xl mt-16 mb-6 font-semibold">
           Full Details
         </h1>
-        <table className="table"
-        data-aos="fade-down"
-        data-aos-duration="1500">
+        <table className="table" data-aos="fade-down" data-aos-duration="1500">
           <tbody>
             <tr>
               <td className="data-name">Name :</td>

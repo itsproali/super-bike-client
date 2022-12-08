@@ -12,7 +12,7 @@ const EditItem = () => {
   // Load Item Details
   useEffect(() => {
     axios
-      .get(`https://super-bike-warehouse.herokuapp.com/item/${id}`)
+      .get(`https://super-bike-server.vercel.app/item/${id}`)
       .then((res) => {
         setItem(res.data);
       })
@@ -31,7 +31,7 @@ const EditItem = () => {
     const item = { title, brand, price, supplier, description, img, engine };
 
     axios
-      .put(`https://super-bike-warehouse.herokuapp.com/edit/${id}`, { item })
+      .put(`https://super-bike-server.vercel.app/edit/${id}`, { item })
       .then((res) => {
         toast.success("Product Updated Successfully");
         navigate("/inventories");

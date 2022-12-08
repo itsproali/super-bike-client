@@ -28,7 +28,7 @@ const InventoryItem = ({ item }) => {
     if (password === "delete") {
       Swal.fire({ icon: "success", text: "Item Deleted successfully" });
       axios
-        .delete(`https://super-bike-warehouse.herokuapp.com/delete/${id}`)
+        .delete(`https://super-bike-server.vercel.app/delete/${id}`)
         .then((res) => {
           const remaining = items.filter((item) => item._id !== id);
           console.log(remaining);
