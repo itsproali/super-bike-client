@@ -48,7 +48,7 @@ const TeamSlider = () => {
   const [members, setMembers] = useState();
   useEffect(() => {
     axios
-      .get("https://super-bike-server.vercel.app/members")
+      .get(`${process.env.REACT_APP_SERVER}/members`)
       .then(async (res) => {
         await setMembers(res.data);
       })

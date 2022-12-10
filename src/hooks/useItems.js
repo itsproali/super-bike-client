@@ -7,7 +7,7 @@ const useItems = () => {
   // Load All Items
   useEffect(() => {
     axios
-      .get("https://super-bike-server.vercel.app/items")
+      .get(`${process.env.REACT_APP_SERVER}/items`)
       .then((res) => setItems(res.data))
       .catch((error) => console.log(error));
   }, [items]);

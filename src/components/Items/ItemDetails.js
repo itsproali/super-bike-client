@@ -18,7 +18,7 @@ const ItemDetails = () => {
   // Load Item Details
   useEffect(() => {
     axios
-      .get(`https://super-bike-server.vercel.app/item/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}/item/${id}`)
       .then((res) => {
         setItem(res.data);
         setQuantity(res.data.quantity);
@@ -34,7 +34,7 @@ const ItemDetails = () => {
     console.log(stock);
     if (stock < 999 && stock > 0) {
       axios
-        .put(`https://super-bike-server.vercel.app/stockItem/${id}`, {
+        .put(`${process.env.REACT_APP_SERVER}/stockItem/${id}`, {
           quantity,
           stock,
         })
@@ -51,7 +51,7 @@ const ItemDetails = () => {
   const handleDeliver = async () => {
     if (quantity > 0) {
       axios
-        .put(`https://super-bike-server.vercel.app/item/${id}`, {
+        .put(`${process.env.REACT_APP_SERVER}/item/${id}`, {
           quantity,
           sold,
         })

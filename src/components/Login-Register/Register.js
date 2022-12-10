@@ -51,7 +51,7 @@ const Register = () => {
 
     const userId = user.uid;
     axios
-      .post("https://super-bike-server.vercel.app/getToken", {
+      .post(`${process.env.REACT_APP_SERVER}/getToken`, {
         userId,
       })
       .then((res) => {

@@ -6,18 +6,27 @@ import { BiDetail } from "react-icons/bi";
 import { BsArrowReturnRight } from "react-icons/bs";
 import "aos";
 import { Link, useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 const Inventory = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("https://super-bike-server.vercel.app/items/6")
-      .then((res) => setItems(res.data))
-      .catch((error) => console.log(error));
+      .get(`${process.env.REACT_APP_SERVER}/items/6`)
+      .then((res) => {
+        setItems(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
 
+  console.log(process.env.REACT_APP_SERVER);
   return (
     <div className="mt-[100vh] mb-32 mx-4 md:mx-10 lg:mx-32">
       <div className="text-center">
@@ -28,6 +37,11 @@ const Inventory = () => {
           Products
         </h1>
       </div>
+
+      {/* Loading */}
+      {loading && <Spinner />}
+
+      {/* Items */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {items.map((item) => {
           return (

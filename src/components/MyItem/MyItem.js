@@ -12,7 +12,7 @@ const MyItem = () => {
   useEffect(() => {
     const getMyItems = async () => {
       await axios
-        .get(`https://super-bike-server.vercel.app/my-items?uid=${uid}`, {
+        .get(`${process.env.REACT_APP_SERVER}/my-items?uid=${uid}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },

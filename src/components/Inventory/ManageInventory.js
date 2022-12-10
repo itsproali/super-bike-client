@@ -4,17 +4,25 @@ import InventoryItem from "./InventoryItem";
 import { MdPlaylistAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import useItems from "../../hooks/useItems";
+import Spinner from "../Spinner/Spinner";
 
 const ManageInventory = () => {
   const navigate = useNavigate();
   const [items] = useItems([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("https://super-bike-server.vercel.app/item-count")
-      .then((res) => setCount(res.data.count))
-      .catch((error) => console.log(error));
+      .get(`${process.env.REACT_APP_SERVER}/item-count`)
+      .then((res) => {
+        setCount(res.data.count);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, [count, items]);
 
   return (
@@ -44,6 +52,9 @@ const ManageInventory = () => {
 
         {/* Inventory Items */}
         <div className="md:col-span-3">
+          {/* Loading */}
+          {loading && <Spinner />}
+
           {items.map((item) => (
             <InventoryItem key={item._id} item={item}></InventoryItem>
           ))}
